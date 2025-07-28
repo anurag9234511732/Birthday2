@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY BIRTHDAY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Poppins:wght@300;400;500;600&display=swap');
+
+        :root {
+            --pink: #f472b6;
+            --dark-pink: #db2777;
+            --light-pink: #fbcfe8;
+            --white: #fafafa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--light-pink), var(--white));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heart {position: absolute;
+            pointer-events: none;
+            background-color: var(--pink);
+            transform: rotate(45deg);
+            opacity: 0.7;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background-color: var(--pink);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart:before {
+            top: -50%;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -50%;
+        }
+
+        .valentine-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            position: relative;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+            border: 3px solid var(--pink);
+            overflow: hidden;
+        }
+
+        .valentine-card:hover {
+            transform: scale(1.02);
+        }
+
+        .envelope {
+            width: 300px;
+            height: 200px;
+            position: relative;
+            margin: 2rem auto;
+            cursor: pointer;
+        }
+
+        .envelope-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--pink);
+            z-index: 2;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 50% 100%, 0% 80%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--light-pink);
+            z-index: 1;
+        }
+
+        .letter {
+            position: absolute;
+            width: 90%;
+            height: 180px;
+            background-color: white;
+            border-radius: 5px;
+            z-index: 0;
+            bottom: 0;
+            left: 5%;
+            transition: all 0.5s ease;
+            transform: translateY(0);
+            opacity: 0;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .envelope.open .envelope-front {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope.open .letter {
+            transform: translateY(-150px);
+            opacity: 1;
+            z-index: 3;
+        }
+
+        .btn {
+            background-color: var(--dark-pink);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(219, 39, 119, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(219, 39, 119, 0.4);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 250px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .heartbeat {
+            animation: heartbeat 1.5s ease infinite;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.1);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+
+            75% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        footer {
+            background-color: var(--light-pink);
+            padding: 2rem;
+            text-align: center;
+            color: var(--dark-pink);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero" id="hero">
+        <div class="valentine-card">
+            <h1 class="text-5xl md:text-6xl font-bold text-center mb-4 handwriting text-pink-600">Happy Birthday
+                chudail!</h1>
+            </h1>
+            <p class="text-center text-gray-700 mb-6">IN ADVANCE.</p>
+            <hr>
+            <p class="text-center text-gray-600 mb-6">To the most wonderful person in my life</p>
+            
+
+            <div class="envelope" id="envelope">
+                <div class="envelope-front">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white heartbeat" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+                <div class="envelope-back"></div>
+                <div class="letter">
+                    <h3 class="handwriting text-xl mb-2 text-pink-600">Kaisa Lga Chutki,</h3>
+                    <textarea class="w-full h-24 p-2 border border-pink-200 rounded text-sm mb-2"
+                        placeholder="Write your message here..."></textarea>
+                    <button class="btn">Send </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <button id="yesBtn" class="btn mr-4">Yes!</button>
+                
+            </div>
+        </div>
+    </div>
+
+    <section class="py-12">
+        <h2 class="text-4xl font-bold text-center mb-8 handwriting text-pink-600">YOUR PHOTOS</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="JAGRITI.jpg.png" alt="DEKH CHUDAIL" class="w-full h-full object-cover">
+            </div>
+            <div class="gallery-item">
+                <img src="jagriti 1.png" alt="Romantic dinner setup with candles, flowers, and wine glasses on a table"
+                    class="w-full h-full object-cover">
+            </div>
+            <div class="gallery-item">
+                <img src="jagriti 2.png" alt="Couple sitting on a blanket having a picnic in a meadow of flowers"
+                    class="w-full h-full object-cover">
+            </div>
+            <div class="gallery-item">
+                <img src="jagriti 3.png" alt="Happy couple taking a selfie with their faces close together smiling"
+                    class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="handwriting text-2xl mb-2">Kaisa Lga Chudail 👻 </p>
+        <p>Happy Birthday Jagriti 😎</p>
+    </footer>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hero');
+            const numHearts = 20;
+
+            for (let i = 0; i < numHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+
+                const size = Math.random() * 20 + 10;
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                heart.style.animationDuration = `${Math.random() * 6 + 4}s`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+
+                container.appendChild(heart);
+            }
+        }
+
+        // Envelope interaction
+        const envelope = document.getElementById('envelope');
+
+        function toggleEnvelope() {
+            envelope.classList.toggle('open');
+        }
+
+        // Button interactions
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+
+        yesBtn.addEventListener('click', () => {
+            alert("Baag ja chudail 😄");
+        });
+
+        noBtn.addEventListener('mouseover', () => {
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${Math.random() * 80}%`;
+            noBtn.style.top = `${Math.random() * 80}%`;
+        });
+
+        // Page load
+        window.addEventListener('load', () => {
+            createHearts();
+            envelope.addEventListener('click', toggleEnvelope);
+        });
+    </script>
+</body>
+
+</html>
